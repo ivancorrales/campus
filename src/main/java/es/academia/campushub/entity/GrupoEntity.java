@@ -18,8 +18,10 @@ public class GrupoEntity {
     @Column(nullable = false)
     private String nivelGrupo;
 
-    @Column
-    private DocenteEntity docente;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tutor_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_grupo_tutor"))
+    private DocenteEntity tutor;
 
 
 

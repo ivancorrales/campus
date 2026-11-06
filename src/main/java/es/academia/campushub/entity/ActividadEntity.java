@@ -34,7 +34,9 @@ public class ActividadEntity {
                     constraint = "numero_maximo_participantes > 0"))
     private Integer numeroMaximoParticipantes;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "docente_responsable_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_actividad_docente"))
     private DocenteEntity docenteResponsable;
 
 }

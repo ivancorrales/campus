@@ -21,12 +21,16 @@ public class EstudianteEntity {
     @Column(nullable = false)
     private String apellidoEstudiante;
 
-    @Column(nullable = false, unique = true,check = @CheckConstraint(name = "ck_estudiante_nacimiento_pasado", constraint = "fecha_nacimiento_estudiante < CURRENT_DATE"))
+    @Column(nullable = false, unique = true, length = 150)
     private String correoEstudiante;
 
-    @Column(nullable = false)
+    @Column(nullable = false,
+            check = @CheckConstraint(name = "ck_estudiante_nacimiento_pasado",
+                    constraint = "fecha_nacimiento_estudiante < CURRENT_DATE"))
     private LocalDate fechaNacimientoEstudiante;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "grupo_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_estudiante_grupo"))
     private GrupoEntity grupoEstudiante;
 }

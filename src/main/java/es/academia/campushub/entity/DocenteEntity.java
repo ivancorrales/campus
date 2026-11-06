@@ -22,8 +22,10 @@ public class DocenteEntity {
     @Column(nullable = false, unique = true)
     private String correoDocente;
 
-    @Column(nullable = false)
-    private String departamento;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "departamento_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_docente_departamento"))
+    private DepartamentoEntity departamento;
 
 
 }
