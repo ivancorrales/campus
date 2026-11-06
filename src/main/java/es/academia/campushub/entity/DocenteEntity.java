@@ -2,25 +2,25 @@ package es.academia.campushub.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
+
 
 @Entity
-@Table(name="Docente")
+@Table(name="docente")
 @Data
 public class DocenteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_docente;
+    private Long idDocente;
 
     @Column(nullable = false)
-    private String nombre_docente;
+    private String nombreDocente;
 
     @Column(nullable = false)
-    private String apellido_docente;
+    private String apellidoDocente;
 
     @Column(nullable = false, unique = true)
-    private String correo_docente;
+    private String correoDocente;
 
     @Column(nullable = false)
     private String departamento;

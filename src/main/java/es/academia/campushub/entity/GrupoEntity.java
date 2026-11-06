@@ -10,13 +10,13 @@ public class GrupoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_grupo;
+    private Long idGrupo;
 
     @Column(nullable = false)
-    private String nombre_grupo;
+    private String nombreGrupo;
 
     @Column(nullable = false)
-    private Integer nivel_grupo;
+    private String nivelGrupo;
 
     @Column
     private DocenteEntity docente;

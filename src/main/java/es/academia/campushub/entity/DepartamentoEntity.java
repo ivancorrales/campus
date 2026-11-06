@@ -5,14 +5,14 @@ import lombok.Data;
 
 @Entity
 @Table(name = "departamento",
-        uniqueConstraints = @UniqueConstraint(name = "uk_departamento_nombre", columnNames = "nombre"))
+        uniqueConstraints = @UniqueConstraint(name = "uk_departamento_nombre", columnNames = "nombre_departamento"))
 @Data
 public class DepartamentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_departamento;
+    private Long idDepartamento;
 
     @Column(nullable = false, length = 100)
-    private String nombre_departamento;
+    private String nombreDepartamento;
 }

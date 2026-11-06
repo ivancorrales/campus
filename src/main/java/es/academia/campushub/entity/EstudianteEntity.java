@@ -2,7 +2,7 @@ package es.academia.campushub.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
+
 
 import java.time.LocalDate;
 
@@ -13,20 +13,20 @@ public class EstudianteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_estudiante;
+    private Long idEstudiante;
 
     @Column(nullable = false)
-    private String nombre_estudiante;
+    private String nombreEstudiante;
 
     @Column(nullable = false)
-    private String apellido_estudiante;
+    private String apellidoEstudiante;
 
-    @Column(nullable = false, unique = true)
-    private String correo_estudiante;
-
-
-    private LocalDate fecha_nacimiento_estudiante;
+    @Column(nullable = false, unique = true,check = @CheckConstraint(name = "ck_estudiante_nacimiento_pasado", constraint = "fecha_nacimiento_estudiante < CURRENT_DATE"))
+    private String correoEstudiante;
 
     @Column(nullable = false)
-    private GrupoEntity grupo_estudiante;
+    private LocalDate fechaNacimientoEstudiante;
+
+    @Column(nullable = false)
+    private GrupoEntity grupoEstudiante;
 }

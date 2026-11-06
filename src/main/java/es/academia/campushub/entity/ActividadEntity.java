@@ -2,26 +2,27 @@ package es.academia.campushub.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Check;
+
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name="Actividad")
+@Table(name="actividad")
 @Data
 public class ActividadEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_actividad;
+    private Long idActividad;
 
     @Column(nullable = false)
     private String titulo;
 
-    @Column(nullable = false)
+    @Column(nullable = false,columnDefinition = "TEXT")
     private String descripcion;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoActividad tipoActividad;
 
     @Column(nullable = false)
@@ -34,6 +35,6 @@ public class ActividadEntity {
     private Integer numeroMaximoParticipantes;
 
     @Column(nullable = false)
-    private DocenteEntity docente_responsable;
+    private DocenteEntity docenteResponsable;
 
 }
