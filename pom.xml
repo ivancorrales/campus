@@ -125,6 +125,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <!-- Cada clase *IT en su propia JVM: sus contenedores Testcontainers se
+                         paran al acabar la clase y Spring no debe reutilizar un contexto
+                         cacheado que apunta a bases de datos ya apagadas. -->
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>

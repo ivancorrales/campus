@@ -1,5 +1,52 @@
 # CampusHub — proyecto inicial para alumnos de 2.º DAM
 
+## Estado de la entrega
+
+La persistencia está implementada: PostgreSQL guarda departamentos, docentes, grupos, estudiantes,
+fichas de contacto, actividades, inscripciones y etiquetas; MongoDB guarda los seguimientos de las
+actividades. Las decisiones están en [`docs/decisiones-tecnicas.md`](docs/decisiones-tecnicas.md) y el
+diseño en [`docs/modelo-datos.md`](docs/modelo-datos.md).
+
+### Requisitos previos
+
+JDK 21, Maven 3.9+ y Docker (Docker Desktop abierto).
+
+### Arrancar la aplicación
+
+```bash
+mvn spring-boot:run
+```
+
+(o el triángulo verde sobre `CampusHubApplication` en IntelliJ). Spring Boot levanta PostgreSQL,
+MongoDB y Redis con `compose.yaml`. Swagger: <http://localhost:8080/swagger-ui.html>.
+
+### Ejecutar las pruebas
+
+```bash
+mvn spotless:apply   # formato
+mvn verify           # pruebas de integración (necesitan Docker)
+```
+
+### Consultar los datos directamente
+
+Con la aplicación arrancada:
+
+```bash
+docker compose exec postgres psql -U campushub -d campushub
+docker compose exec mongo mongosh campushub
+```
+
+Ejemplos: `\dt`, `\d inscripcion`, `SELECT * FROM etiqueta;` en `psql`; `db.seguimientos.find()` y
+`db.seguimientos.getIndexes()` en `mongosh`.
+
+### Detener y reiniciar
+
+Al parar la aplicación, Spring Boot detiene los contenedores y los volúmenes conservan los datos.
+Para parar manualmente: `docker compose down`. **Para borrar también los datos:**
+`docker compose down -v`.
+
+---
+
 **IMPORTANTE:** Este repositorio es intencionadamente incompleto. La API tiene controllers REST y DTO,
 pero la persistencia no existe todavía. Cada operación del servicio devuelve **501 NOT_IMPLEMENTED**.
 Los tests funcionales deben pasar solo después de implementar las entidades, documentos,
