@@ -1,5 +1,3 @@
-# CampusHub — proyecto inicial para alumnos de 2.º DAM
-
 **IMPORTANTE:** Este repositorio es intencionadamente incompleto. La API tiene controllers REST y DTO,
 pero la persistencia no existe todavía. Cada operación del servicio devuelve **501 NOT_IMPLEMENTED**.
 Los tests funcionales deben pasar solo después de implementar las entidades, documentos,

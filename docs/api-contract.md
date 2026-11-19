@@ -49,3 +49,13 @@ No se han añadido `@NotNull`, `@NotBlank`, `@Size`, `@Email` ni `@Min` para que
 alumno tenga que implementar tanto reglas de negocio como restricciones de persistencia.
 El parser JSON puede rechazar entradas estructuralmente mal formadas, pero eso no sustituye
 la protección del almacenamiento frente a inserciones inválidas.
+
+## Notas de la implementación
+
+- Hemos respetado todos los endpoints, DTO y códigos de éxito de la tabla de arriba.
+- También devolvemos 404 si el grupo o el departamento que se indica no existe.
+- `GET /api/estudiantes/{id}/contacto` devuelve 404 si el estudiante existe pero no tiene ficha.
+- `PUT /api/actividades/{id}/etiquetas/{etiquetaId}` se puede repetir y siempre devuelve 204.
+- Los inscritos de una actividad salen ordenados por fecha de inscripción, el historial de un
+  estudiante por fecha prevista de la actividad, las actividades de una etiqueta por id y los
+  seguimientos por fecha de creación.
