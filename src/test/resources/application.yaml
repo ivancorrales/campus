@@ -2,6 +2,9 @@ spring:
   docker:
     compose:
       enabled: false
+  data:
+    mongodb:
+      uri: ${spring.mongodb.uri}
   jpa:
     hibernate:
       ddl-auto: create-drop
